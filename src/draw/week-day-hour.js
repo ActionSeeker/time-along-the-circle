@@ -1,14 +1,10 @@
-class DrawWeekDayHour {
-  constructor() {
-    this.layers = 3;
-    // 1 week has 7 days
-    // 1 day has 24 hours
-    this.elementsInLayers = [1, 7, 24];
-  }
+import { LayeredCircleDraw } from "./layered-circle-draw";
 
-  draw() {
-    this.elementsInLayers.forEach((layer) => {
-
-    });
+export class DrawWeekDayHour extends LayeredCircleDraw {
+  constructor(centerCircle) {
+    super(centerCircle, [
+      { count: 7, gap: 30 },
+      { count: 24, gap: 5 },
+    ]);
   }
 }
