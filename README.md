@@ -1,13 +1,13 @@
 # Circle & Time
 
 This small HTML + JavaScript demo draws a circle on an HTML5 `<canvas>` and divides it into seven arcs.
-On the surface, it looks like geometry — a simple heptagon layout.
+On the surface, it looks like geometry - a simple heptagon layout.
 But beneath it, there is a meditation on **time**.
 
 ## Reflection
 
 A circle has no beginning and no end, yet we insist on cutting it, dividing it, naming its parts.
-Seven arcs echo the **seven days** of our week — an arbitrary rhythm we imposed on eternity.
+Seven arcs echo the **seven days** of our week - an arbitrary rhythm we imposed on eternity.
 In truth, there is no perfect compass stroke that divides a circle into seven equal parts.
 Our hands cannot construct it; only our minds can imagine it.
 
