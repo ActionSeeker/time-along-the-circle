@@ -1,205 +1,70 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<title>Printable Tickets (A4)</title>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-
-<!-- Number font (swap if you like) -->
-<link href="https://fonts.googleapis.com/css2?family=League+Gothic&family=IBM+Plex+Mono:wght@700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
-
-<style>
-  /* ---------- PAGE & PRINT ---------- */
-  @page { size: A4; margin: 10mm; }              /* A4 with 10mm margins */
-  :root { --ink:#111; --page:#f2f2f2; }
-
-  body{
-    margin:0; background:var(--page);
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  }
-
-  /* Screen layout */
-  .toolbar{ position:sticky; top:0; background:#fff; padding:8px 12px; border-bottom:1px solid #ddd; }
-  .sheet{
-    display:grid; gap:6mm;
-    grid-template-columns: repeat(3, 1fr);
-    padding:12mm;
-  }
-
-  /* Hide toolbar when printing; force colours to print */
-  @media print{
-    .toolbar{ display:none; }
-    body{ background:#fff; }
-    .sheet{ padding:0; gap:6mm; }
-    *{
-      -webkit-print-color-adjust: exact;
-              print-color-adjust: exact;
-      forced-color-adjust: none;
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Circle with Seven Around</title>
+  <style>
+    :root {
+      --gap: 16px;
     }
-  }
 
-  /* ---------- TICKET CARD ---------- */
-.ticket{
-    /* Physical size */
-      width: 54mm;
-      /* ~credit card width, fits 3 across */
-      height: 95mm;
-      background: #f6d0a7;
-      /* default; each card will override */
-      color: var(--ink);
-      border: 0.5mm solid #111;
-      border-radius: 2mm;
-      position: relative;
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      display: grid;
+      place-items: center;
+    }
+
+    .wrap {
+      width: min(800px, 92vw);
+      padding: var(--gap);
+      display: grid;
+      gap: var(--gap);
+    }
+
+    canvas {
+      width: 100%;
+      height: auto;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+    }
+
+    .controls {
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      overflow: hidden;
-    
-      /* avoid splitting across pages */
-      break-inside: avoid;
-      page-break-inside: avoid;
-      box-shadow: 0 4mm 8mm rgba(0, 0, 0, .15);
-      /* removed in print */
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
 
-  /* MULTI-BACKGROUND:
-     Order matters: first items are on TOP.
-     So we draw the grid first (on top), then the PNG, then the color. */
-  background:
-    /* 1: horizontal ledger (on top) */ 
-    repeating-linear-gradient(0deg, rgba(0,0,0,.08) 0 1px, transparent 1px 26px) top left / 100% 26px repeat,
-    /* 2: vertical ledger */ 
-    repeating-linear-gradient(90deg, rgba(0,0,0,.06) 0 1px, transparent 1px 30px) top left / 30px 100% repeat,
-    /* 3: PNG watermark (bottom) */
-    url("images/rail_map.png") center / cover no-repeat;
-    /* Let the PNG sink into the pastel stock; grids stay normal on top */
-  background-blend-mode: normal, normal, multiply !important;
-  outline:2px solid #111;
-
-  /* screen-only shadow; remove in print */
-  box-shadow: 0 10px 20px rgba(0,0,0,.15);
-}
-@media print {
-  .ticket{ box-shadow:none; }
-  *{
-    -webkit-print-color-adjust: exact;
-            print-color-adjust: exact;
-    forced-color-adjust: none;
-  }
-}
-
-  /* light ledger grid */
-  .ticket::before{
-    content:""; position:absolute; inset:0; pointer-events:none;
-    background:
-      repeating-linear-gradient(0deg, rgba(0,0,0,.08) 0 0.2mm, transparent 0.2mm 7mm),
-      repeating-linear-gradient(90deg, rgba(0,0,0,.06) 0 0.2mm, transparent 0.2mm 8mm);
-    background-blend-mode: normal, normal, overlay;
-    opacity:.4;
-    z-index: 1
-  }
-
-  .head, .foot{
-    margin: 3mm;
-    padding: 2mm 3mm;
-    border: 0.5mm solid #111;
-    border-radius: 2mm;
-    background: rgba(255,255,255,.6);
-    text-align:center;
-  }
-  .head{ font-weight:800; font-size: 3.2mm; letter-spacing:.2mm; }
-  .foot{
-    display:flex; 
-    justify-content:space-between; 
-    align-items:center;
-    font: 700 2.7mm "IBM Plex Mono", ui-monospace, monospace;
-  }
-
-  .head,.num,.foot { position: relative; z-index: 2; }
-
-  /* BIG number */
-.num{
-  font-family: "Major Mono Display", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-weight: 900;
-  line-height: 1;
-  text-align: center;
-  color: #111;
-  font-size: 36mm;        /* single digits */
-  margin-top: -2mm;
-  letter-spacing: 0;      /* mono font = even spacing */
-  text-shadow: 0.6mm 0.6mm rgba(0,0,0,.12); /* optional depth */
-  font-variant-numeric: tabular-nums;       /* keeps widths consistent */
-  }
-
-  .double{
-  font-size: 30mm;        /* fit 10–20 */
-  letter-spacing: -0.8mm; /* tighten two digits slightly */
-  }
-
-  /* subtle perforation row above footer */
-  .foot::before{
-    content: "........";
-    position: absolute;
-    left: 0mm;
-    right: 5mm;
-    bottom: 16mm;
-    letter-spacing: 5px;
-    /* height: 10mm; */
-    /* background:
-      radial-gradient(circle at 2mm 1.5mm, white 1.6mm, transparent 1.6mm) left top / 4mm 3mm repeat-x; */
-    opacity: .9; 
-    pointer-events: none;
-    font-size: 30px;
-    color: white
-  }
-
-  /* side notches */
-  .ticket::after{
-    content:""; position:absolute; top:50%; right:-2mm; transform:translateY(-50%);
-    width:4mm; height:4mm; background:white; border-radius:50%;
-    box-shadow: inset 0 0 0 0.5mm #111;
-  }
-
-  /* pastel palette rotation */
-  .c0{ background-color:#f6d0a7; }
-  .c1{ background-color:#d7e3b5; } 
-  .c2{ background-color:#cfe1f7; }
-  .c3{ background-color:#f2c6de; } 
-  .c4{ background-color:#f6e6a8; } 
-  .c5{ background-color:#cde7df; }
-  .c6{ background-color:#e8d0b9; } 
-  .c7{ background-color:#d7cef2; } 
-  .c8{ background-color:#ffd9c2; }
-  .c9{ background-color:#e3f0c7; }
-</style>
+    label {
+      font-weight: 600;
+    }
+  </style>
 </head>
+
 <body>
+  <div class="wrap">
+    <h1>Center circle + seven around</h1>
+    <div class="controls">
+      <label>Outer count</label>
+      <input id="count" type="number" min="2" max="60" value="7" />
+      <label>Circle radius</label>
+      <input id="radius" type="range" min="20" max="160" value="150" />
+      <label><input id="showRays" type="checkbox" checked> show rays</label>
+      <label><input id="labels" type="checkbox" checked> labels</label>
+    </div>
+    <canvas id="c" width="800" height="800"></canvas>
+  </div>
 
-<div class="toolbar">
-  <button onclick="window.print()">🖨️ Print</button>
-  <span style="margin-left:8px;color:#444">In the dialog, enable “Print backgrounds/Background graphics”.</span>
-</div>
-
-<main class="sheet" id="sheet"></main>
-
-<script>
-  const sheet = document.getElementById('sheet');
-  const colors = ["c0","c1","c2","c3","c4","c5","c6","c7","c8","c9"];
-  const rand = (a,b)=> Math.floor(Math.random()*(b-a+1))+a;
-
-  for(let i=1;i<=20;i++){
-    const t = document.createElement('section');
-    t.className = `ticket ${colors[(i-1)%colors.length]}`;
-
-    const serial = `${["A","B","C","D","E","F"][i%6]} ${rand(2000,9999)}`;
-
-    t.innerHTML = `
-      <div class="head">ப்ளூ பஸ் கம்பெனி</div>
-      <div class="num ${i>=10?'double':''}">${i}</div>
-      <div class="foot"><span>IN·OUT·SINGLE·RETURN</span><span>${serial}</span></div>
-    `;
-    sheet.appendChild(t);
-  }
-</script>
+  <!-- If your entry is src/main.js, change to /src/main.js -->
+  <script type="module" src="src/main.js"></script>
 </body>
+
 </html>
