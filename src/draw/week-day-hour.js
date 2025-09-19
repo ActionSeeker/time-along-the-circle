@@ -1,4 +1,4 @@
-import { LayeredCircleDraw } from "./layered-circle-draw";
+import { LayeredCircleDraw } from './layered-circle-draw';
 
 export class DrawWeekDayHour extends LayeredCircleDraw {
   constructor(centerCircle) {

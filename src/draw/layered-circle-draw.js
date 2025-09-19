@@ -1,6 +1,6 @@
 export class LayeredCircleDraw {
   constructor(centerCircle, levels = []) {
-    if (!centerCircle) throw new Error("No center circle to work with");
+    if (!centerCircle) throw new Error('No center circle to work with');
     this.center = centerCircle;
     this.levels = levels;
   }
@@ -13,6 +13,7 @@ export class LayeredCircleDraw {
       const { count, gap } = this.levels[level];
       const nextLayer = [];
 
+      // eslint-disable-next-line no-restricted-syntax
       for (const circle of currentLayer) {
         const kids = circle.generateOrbitingCircles(count, gap);
         allCircles.push(...kids);

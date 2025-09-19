@@ -1,12 +1,12 @@
-import { DrawWeekDayHour } from "./draw/week-day-hour";
-import { Circle } from "./geometry/circle";
-import { Coordinates } from "./geometry/coordinates";
+import { DrawWeekDayHour } from './draw/week-day-hour';
+import { Circle } from './geometry/circle';
+import { Coordinates } from './geometry/coordinates';
 
-const canvas = document.getElementById("c");
-const ctx = canvas.getContext("2d");
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
 
-const radiusEl = document.getElementById("radius");
-const labelsEl = document.getElementById("labels");
+const radiusEl = document.getElementById('radius');
+const labelsEl = document.getElementById('labels');
 
 function fitCanvasToDPR(cvs) {
   const dpr = Math.max(1, window.devicePixelRatio || 1);
@@ -27,13 +27,13 @@ export function draw() {
   ctx.clearRect(0, 0, width, height);
 
   new DrawWeekDayHour(
-    new Circle(ctx, new Coordinates(cx, cy), r, "#fff")
+    new Circle(ctx, new Coordinates(cx, cy), r, '#fff'),
   ).draw();
 }
 
-["input", "change"].forEach((ev) => {
+['input', 'change'].forEach((ev) => {
   radiusEl.addEventListener(ev, draw);
   labelsEl.addEventListener(ev, draw);
 });
 
-window.addEventListener("resize", draw);
+window.addEventListener('resize', draw);
