@@ -27,17 +27,17 @@ export function draw() {
   const r = Number(radiusEl.value) || 80;
   ctx.clearRect(0, 0, width, height);
 
-  // new DrawHourMinutes(
-  //   new Circle(ctx, new Coordinates(cx, cy), r, '#CCDCEB')
-  // ).draw();
-
-  new DrawWeekDayHour(
-    new Circle(ctx, new Coordinates(cx, cy), r, '#CCDCEB')
+  new DrawHourMinutes(
+    new Circle(ctx, new Coordinates(cx, cy), r, '#CCDCEB'),
   ).draw();
 
-  // new DrawYearMonths(
-  //   new Circle(ctx, new Coordinates(cx, cy), r, '#CCDCEB')
-  // ).draw();
+  new DrawWeekDayHour(
+    new Circle(ctx, new Coordinates(cx, cy), r, '#CCDCEB'),
+  ).draw();
+
+  new DrawYearMonths(
+    new Circle(ctx, new Coordinates(cx, cy), r, '#CCDCEB'),
+  ).draw();
 }
 
 ['input', 'change'].forEach((ev) => {
