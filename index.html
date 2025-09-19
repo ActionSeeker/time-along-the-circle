@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Circle with Seven Around</title>
+  <style>
+    :root {
+      --gap: 16px;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      display: grid;
+      place-items: center;
+    }
+
+    .wrap {
+      width: min(800px, 92vw);
+      padding: var(--gap);
+      display: grid;
+      gap: var(--gap);
+    }
+
+    canvas {
+      width: 100%;
+      height: auto;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+    }
+
+    .controls {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    label {
+      font-weight: 600;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <h1>Center circle + seven around</h1>
+    <div class="controls">
+      <label>Outer count</label>
+      <input id="count" type="number" min="2" max="60" value="7" />
+      <label>Circle radius</label>
+      <input id="radius" type="range" min="20" max="160" value="150" />
+      <label><input id="showRays" type="checkbox" checked> show rays</label>
+      <label><input id="labels" type="checkbox" checked> labels</label>
+    </div>
+    <canvas id="c" width="800" height="800"></canvas>
+  </div>
+
+  <!-- If your entry is src/main.js, change to /src/main.js -->
+  <script type="module" src="src/main.js"></script>
+</body>
+
+</html>
