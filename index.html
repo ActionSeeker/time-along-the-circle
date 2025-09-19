@@ -17,8 +17,8 @@
       body {
         margin: 0;
         font-family: system-ui, sans-serif;
-        display: grid;
-        place-items: center;
+        display: flex; /* or block (default) */
+        justify-content: center; /* keeps it centered horizontally */
       }
 
       .wrap {
@@ -33,6 +33,11 @@
         height: auto;
         border: 1px solid #ddd;
         border-radius: 12px;
+      }
+
+      .canvas-wrap {
+        display: grid;
+        place-items: center;
       }
 
       .controls {
@@ -52,12 +57,9 @@
     <div class="wrap">
       <h1>Center circle + seven around</h1>
       <div class="controls">
-        <label>Outer count</label>
-        <input id="count" type="number" min="2" max="60" value="7" />
-        <label>Circle radius</label>
+        <label>Größe</label>
         <input id="radius" type="range" min="20" max="160" value="150" />
-        <label><input id="showRays" type="checkbox" checked /> show rays</label>
-        <label><input id="labels" type="checkbox" checked /> labels</label>
+        <button id="exportCanvas">Speichern</button>
       </div>
       <canvas id="c" width="800" height="800"></canvas>
     </div>

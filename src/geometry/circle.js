@@ -6,20 +6,28 @@ export class Circle {
     this.ctx = ctx;
     this.center = new Coordinates(center.x, center.y);
     this.radius = radius;
-    this.color = color || '#000';
+    this.fillColor = color || '#000';
+    this.strokeColor = color || '#000';
   }
 
   draw() {
-    const {
-      ctx, center, radius, color,
-    } = this;
+    const { ctx, center, radius } = this;
     ctx.beginPath();
     ctx.arc(center.x, center.y, radius, 0, Math.PI * 2);
     ctx.lineWidth = 2;
-    ctx.strokeStyle = color;
-    ctx.fillStyle = color;
+    ctx.strokeStyle = this.fillColor;
+    ctx.fillStyle = this.strokeColor;
     ctx.fill();
     ctx.stroke();
+  }
+
+  setFillStyle(fill) {
+    this.fillColor = fill;
+    this.strokeColor = fill;
+  }
+
+  getFillStyle() {
+    return this.fillColor;
   }
 
   /**

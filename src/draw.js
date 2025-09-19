@@ -1,4 +1,6 @@
+import { DrawHourMinutes } from './draw/hour-minutes';
 import { DrawWeekDayHour } from './draw/week-day-hour';
+import { DrawYearMonths } from './draw/year-months';
 import { Circle } from './geometry/circle';
 import { Coordinates } from './geometry/coordinates';
 
@@ -6,7 +8,6 @@ const canvas = document.getElementById('c');
 const ctx = canvas.getContext('2d');
 
 const radiusEl = document.getElementById('radius');
-const labelsEl = document.getElementById('labels');
 
 function fitCanvasToDPR(cvs) {
   const dpr = Math.max(1, window.devicePixelRatio || 1);
@@ -26,14 +27,21 @@ export function draw() {
   const r = Number(radiusEl.value) || 80;
   ctx.clearRect(0, 0, width, height);
 
+  // new DrawHourMinutes(
+  //   new Circle(ctx, new Coordinates(cx, cy), r, '#CCDCEB')
+  // ).draw();
+
   new DrawWeekDayHour(
-    new Circle(ctx, new Coordinates(cx, cy), r, '#fff'),
+    new Circle(ctx, new Coordinates(cx, cy), r, '#CCDCEB')
   ).draw();
+
+  // new DrawYearMonths(
+  //   new Circle(ctx, new Coordinates(cx, cy), r, '#CCDCEB')
+  // ).draw();
 }
 
 ['input', 'change'].forEach((ev) => {
   radiusEl.addEventListener(ev, draw);
-  labelsEl.addEventListener(ev, draw);
 });
 
 window.addEventListener('resize', draw);
