@@ -28,15 +28,15 @@ export function draw() {
   ctx.clearRect(0, 0, width, height);
 
   new DrawHourMinutes(
-    new Circle(ctx, new Coordinates(cx, cy), r, '#CCDCEB'),
+    new Circle(ctx, new Coordinates(cx, cy), r, '#CCDCEB')
   ).draw();
 
   new DrawWeekDayHour(
-    new Circle(ctx, new Coordinates(cx, cy), r, '#CCDCEB'),
+    new Circle(ctx, new Coordinates(cx, cy), r, '#CCDCEB')
   ).draw();
 
   new DrawYearMonths(
-    new Circle(ctx, new Coordinates(cx, cy), r, '#CCDCEB'),
+    new Circle(ctx, new Coordinates(cx, cy), r, '#CCDCEB')
   ).draw();
 }
 
