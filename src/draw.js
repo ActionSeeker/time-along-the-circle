@@ -1,5 +1,5 @@
-import { Angle } from './angle';
-import { Circle } from './circle';
+import { Angle } from './geometry/angle';
+import { Circle } from './geometry/circle';
 import { Coordinates } from './coordinates';
 
 const canvas = document.getElementById('c');
