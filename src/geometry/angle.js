@@ -1,7 +1,7 @@
 /**
  * Utility class for angle conversions between degrees and radians.
  */
-export default class Angle {
+export class Angle {
   /**
    * Convert degrees to radians.
    *

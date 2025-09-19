@@ -1,6 +1,6 @@
 import { Angle } from './geometry/angle';
 import { Circle } from './geometry/circle';
-import { Coordinates } from './coordinates';
+import { Coordinates } from './geometry/coordinates';
 
 const canvas = document.getElementById('c');
 const ctx = canvas.getContext('2d');
@@ -11,9 +11,8 @@ const labelsEl = document.getElementById('labels');
 function fitCanvasToDPR(cvs) {
   const dpr = Math.max(1, window.devicePixelRatio || 1);
   const { width, height } = cvs.getBoundingClientRect();
-  cvs.width = Math.round(width * dpr);
-  cvs.height = Math.round(height * dpr);
-  const ctx = cvs.getContext('2d');
+  cvs.width = Math.round(width * dpr); // eslint-disable-line no-param-reassign
+  cvs.height = Math.round(height * dpr); // eslint-disable-line no-param-reassign
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   return ctx;
 }

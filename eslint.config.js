@@ -28,6 +28,7 @@ export default [
       'no-console': 'off',
       'no-plusplus': 'off',
       'import/no-extraneous-dependencies': 'off',
+      'import/prefer-default-export': 'off',
     },
   },
 ];

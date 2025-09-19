@@ -1,4 +1,4 @@
 import './style.css';
-import { draw } from './draw.js';
+import { draw } from './draw';
 
 draw();

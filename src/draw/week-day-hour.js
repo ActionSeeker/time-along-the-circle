@@ -7,8 +7,8 @@ class DrawWeekDayHour {
   }
 
   draw() {
-    this.elementsInLayers.forEach((count) => {
-      const days = drawSmallerCirclesAround(circle, 7, 35);
+    this.elementsInLayers.forEach((layer) => {
+
     });
   }
 }

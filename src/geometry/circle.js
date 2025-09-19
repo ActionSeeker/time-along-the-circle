@@ -1,6 +1,7 @@
+import { Angle } from './angle';
 import { Coordinates } from './coordinates';
 
-export default class Circle {
+export class Circle {
   constructor(ctx, center, radius, color) {
     this.ctx = ctx;
     this.center = new Coordinates(center.x, center.y);
@@ -9,7 +10,9 @@ export default class Circle {
   }
 
   draw() {
-    const { ctx, center, radius, color } = this;
+    const {
+      ctx, center, radius, color,
+    } = this;
     ctx.beginPath();
     ctx.arc(center.x, center.y, radius, 0, Math.PI * 2);
     ctx.lineWidth = 2;
@@ -34,9 +37,8 @@ export default class Circle {
 
     let currentAngle = 0;
     for (let i = 0; i < childCount; i++) {
-      const childCenter = new Coordinates(this.center.x, this.center.y)
-        .cartesianRotate(childRadius + this.radius + gap, currentAngle);
-
+      let childCenter = new Coordinates(this.center.x, this.center.y);
+      childCenter = childCenter.cartesianRotate(childRadius + this.radius + gap, currentAngle);
       children.push(new Circle(this.ctx, childCenter, childRadius));
       currentAngle += angleStep;
     }
